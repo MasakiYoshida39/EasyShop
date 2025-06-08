@@ -1,13 +1,9 @@
 package model;
-
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
+//下が必要な理由、前まではjavax.servlet.http.HttpSessionでよかったが2020年頃に名称変更されjakarta.servlet.http.HttpSession2020年頃に名称変更され
+import jakarta.servlet.http.HttpSession;
 
-/**
- * 店内オペレーションクラス
- * @author M.Takahashi
- */
 public class Operation {
 	/**
 	 * ログイン時の処理
