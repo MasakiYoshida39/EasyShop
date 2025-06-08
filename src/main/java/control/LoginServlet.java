@@ -2,13 +2,13 @@ package control;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSessionEvent;
 
 import model.Operation;
 
@@ -16,7 +16,7 @@ import model.Operation;
  * ログイン処理を行うサーブレット
  * @author M.Takahashi
  */
-@WebServlet("/login-servlet")
+@jakarta.servlet.annotation.WebServlet("/login-servlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,8 @@ public class LoginServlet extends HttpServlet {
 		// ログイン処理
 		HttpSession session = request.getSession();	// セッションオブジェクト取得
 		Operation op = new Operation();
-		boolean result = op.loginProc(userId, password, session);
+		HttpSession session = request.getSession(); // ✅ 正しい
+
 
 		// 転送先設定
 		String url = "select.jsp";

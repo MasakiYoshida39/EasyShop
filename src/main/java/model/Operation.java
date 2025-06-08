@@ -2,7 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSessionEvent;
 
 /**
  * 店内オペレーションクラス
@@ -16,7 +17,7 @@ public class Operation {
 	 * @param session セッションオブジェクト
 	 * @return true .. 正常、false .. ID／パスワード誤り
 	 */
-	public boolean loginProc(String userId, String password, HttpSession session) {
+	public boolean loginProc(String userId, String password, HttpSessionEvent session) {
 
 		// ログイン認証
 		boolean result = authenticate(userId, password);
@@ -24,11 +25,11 @@ public class Operation {
 		if (result) {
 			// 店舗データの作成⇒セッションに格納
 			Store store = makeStore();
-			session.setAttribute("store", store);
+			((HttpSession) session).setAttribute("store", store);
 			
 			// カート情報の作成（userId設定・商品リストは空）⇒セッションに格納
 			Cart cart = new Cart(userId, new ArrayList<Product>());
-			session.setAttribute("cart", cart);
+			((HttpSession) session).setAttribute("cart", cart);
 		}
 
 		return result;
