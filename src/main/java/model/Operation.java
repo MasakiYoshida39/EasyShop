@@ -1,9 +1,13 @@
 package model;
+
 import java.util.ArrayList;
 
-//下が必要な理由、前まではjavax.servlet.http.HttpSessionでよかったが2020年頃に名称変更されjakarta.servlet.http.HttpSession2020年頃に名称変更され
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * 店内オペレーションクラス
+ * @author M.Takahashi
+ */
 public class Operation {
 	/**
 	 * ログイン時の処理
@@ -76,6 +80,27 @@ public class Operation {
 
 		session.invalidate();
 		
+	}
+
+	/**
+	 * 商品追加処理
+	 * @param idx 商品一覧の選択した商品のidx (セッション：store内)
+	 * @param session セッションオブジェクト
+	 */
+	public void addProd(int idx, HttpSession session) {
+		
+		// 店舗情報・カート情報の取得（セッションより）
+		Store store = (Store) session.getAttribute("store");
+		Cart cart = (Cart) session.getAttribute("cart");
+
+		if ((store != null) && (cart != null)) {
+			// カートに指定の商品を追加
+			cart.add(store.getListProd().get(idx));
+
+			// セッションに再度格納
+			session.setAttribute("cart", cart);
+		}
+
 	}
 
 }

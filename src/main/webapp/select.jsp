@@ -29,7 +29,7 @@
 
 			<table class="select-list">
 			<tr>
-				<th>商品ID</th><th>商品名</th><th>価格</th>
+				<th></th><th>商品ID</th><th>商品名</th><th>価格</th>
 			</tr>
 				
 	<%
@@ -37,6 +37,12 @@
 				Product prod = listProd.get(idx);
 	%>
 				<tr>
+					<td>
+						<form action="add-prod-servlet" method="POST">
+							<input type="hidden" name="idx" value="<%=idx%>">
+							<input type="submit" value="選択">
+						</form>
+					</td>
 					<td><%=prod.getId() %></td>
 					<td><%=prod.getName() %></td>
 					<td><%=prod.getPriceString() %></td>
