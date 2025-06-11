@@ -29,13 +29,20 @@
 	%>
 			<table class="cart-list">
 			<tr>
-				<th>商品ID</th><th>商品名</th><th>価格</th>
+				<th></th><th>商品ID</th><th>商品名</th><th>価格</th>
 			</tr>
 	<%
 			for (int idx = 0; idx < listProd.size(); idx++) {
 				Product prod = listProd.get(idx);
 	%>
 				<tr>
+					<td>
+						<form action="remove-prod-servlet" method="POST">
+						    <!-hiddenは隠す意味 -->
+							<input type="hidden" name="idx" value="<%=idx%>">
+							<input type="submit" value="削除">
+						</form>
+					</td>
 					<td><%=prod.getId() %></td>
 					<td><%=prod.getName() %></td>
 					<td><%=prod.getPriceString() %></td>
@@ -44,6 +51,10 @@
 			}
 	%>
 			</table>
+			<br>
+			<form action="pay-servlet" method="post">
+				<input type="submit" value="精算"><br>
+			</form>
 				
 	<%
 		} else {

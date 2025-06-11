@@ -1,5 +1,4 @@
 package model;
-
 import java.util.ArrayList;
 
 import jakarta.servlet.http.HttpSession;
@@ -99,6 +98,46 @@ public class Operation {
 
 			// セッションに再度格納
 			session.setAttribute("cart", cart);
+		}
+
+	}
+
+	/**
+	 * カートから商品削除処理
+	 * @param idx カートの中の選択した商品のidx
+	 * @param session セッションオブジェクト
+	 */
+	public void removeProd(int idx, HttpSession session) {
+	
+		// カート内商品情報の取得（セッションより）
+		Cart cart = (Cart) session.getAttribute("cart");
+	
+		if (cart != null) {
+			// カートから指定の商品を削除
+			cart.remove(idx);
+
+			// セッションに書き戻す
+			session.setAttribute("cart", cart);
+		}
+			
+	}
+	
+	/**
+	 * 精算処理
+	 * @param session セッションオブジェクト
+	 */
+	public void pay(HttpSession session) {
+
+		// カート内商品情報の取得
+		Cart cart = (Cart) session.getAttribute("cart");
+
+		if (cart != null) {
+			// セッションに格納（精算済みデータ）
+			session.setAttribute("pay", cart);
+
+			// カート情報の新規作成⇒セッションに格納
+			Cart newCart = new Cart(cart.getUserId(), new ArrayList<Product>());
+			session.setAttribute("cart", newCart);
 		}
 
 	}
