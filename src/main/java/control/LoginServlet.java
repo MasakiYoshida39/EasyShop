@@ -11,10 +11,6 @@ import jakarta.servlet.http.HttpSession;
 
 import model.Operation;
 
-/**
- * ログイン処理を行うサーブレット
- * @author M.Takahashi
- */
 @jakarta.servlet.annotation.WebServlet("/login-servlet")
 public class LoginServlet extends jakarta.servlet.http.HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,17 +24,26 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 
-		// ログイン処理
-		HttpSession session = request.getSession();	// セッションオブジェクト取得
-		Operation op = new Operation();
-		boolean result = op.loginProc(userId, password, session);
-
-		// 転送先設定
+		
+		
+		// ログイン処理＋転送
 		String url = "select.jsp";
-		if (!result) {					// エラーの場合にはログイン画面に戻す
-			request.setAttribute("errorMsg", "ユーザID または パスワードに 誤りがあります。");	
+		
+		try {
+			// ログイン処理
+			HttpSession session = request.getSession();	// セッションオブジェクト取得
+			Operation op = new Operation();
+			boolean result = op.loginProc(userId, password, session);
+			
+			if (!result) {					// エラーの場合にはログイン画面に戻す
+				request.setAttribute("errorMsg", "ユーザID または パスワードに 誤りがあります。");	
+				url = "login.jsp";
+			}
+		} catch (Exception e) {				// 例外発生時にはログイン画面に戻す
+			request.setAttribute("errorMsg", "ログイン時にエラーが発生しました。");	
 			url = "login.jsp";
 		}
+		
 		
 		// 転送
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

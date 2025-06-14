@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 import model.Operation;
 
-/**
- * ログアウト処理を行うサーブレット
- * @author M.Takahashi
- */
+
 @jakarta.servlet.annotation.WebServlet("/logout-servlet")
 public class LogoutServlet extends jakarta.servlet.http.HttpServlet {
 	private static final long serialVersionUID = 1L;

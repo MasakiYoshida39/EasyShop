@@ -2,10 +2,7 @@ package model;
 
 import java.util.List;
 
-/**
- * 店舗情報を表すクラス
- * @author M.Takahashi
- */
+
 public class Store {
 	/******** フィールド ******************************************/
 	/**

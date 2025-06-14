@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 import model.Operation;
 
-/**
- * カートから商品を削除するサーブレット
- * @author M.Takahashi
- */
+
 @jakarta.servlet.annotation.WebServlet("/remove-prod-servlet")
 public class RemoveProdServlet extends jakarta.servlet.http.HttpServlet {
 	private static final long serialVersionUID = 1L;

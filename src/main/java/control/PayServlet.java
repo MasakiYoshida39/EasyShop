@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 import model.Operation;
 
-/**
- * 精算するサーブレット
- * @author M.Takahashi
- */
+
 @jakarta.servlet.annotation.WebServlet("/pay-servlet")
 public class PayServlet extends jakarta.servlet.http.HttpServlet {
 	private static final long serialVersionUID = 1L;

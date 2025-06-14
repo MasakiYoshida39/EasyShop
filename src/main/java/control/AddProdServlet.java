@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 import model.Operation;
 
-/**
- * カートに商品を追加するサーブレット
- * @author M.Takahashi
- */
+
 @jakarta.servlet.annotation.WebServlet("/add-prod-servlet")
 public class AddProdServlet extends jakarta.servlet.http.HttpServlet {
 	private static final long serialVersionUID = 1L;
