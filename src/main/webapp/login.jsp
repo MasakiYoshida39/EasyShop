@@ -17,14 +17,7 @@
 		<input type="submit" value="ログイン">
 	</form>
 
-	<% 
-		String errorMsg = (String)request.getAttribute("errorMsg");
-		if (errorMsg != null) {
-	%>
-			<p class="error-msg"><%= errorMsg %></p>
-	<%
-		} 
-	%>
+	<%@include file = "msg.jsp"%>
 
 </body>
 </html>
